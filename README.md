@@ -106,9 +106,16 @@ Create `backend/.env` from `backend/.env.example` and set:
 - GEMINI_API_KEY=your_gemini_api_key
 - GEMINI_MODEL=gemini-2.5-flash
 
+For production also set:
+
+- NODE_ENV=production
+- CLIENT_URLS=https://your-frontend-domain.com
+
 Create `frontend/.env` from `frontend/.env.example`:
 
 - VITE_API_BASE_URL=http://localhost:5000/api
+
+For same-domain production hosting (backend serves frontend build), you can omit `VITE_API_BASE_URL`.
 
 ## Run Locally
 
@@ -139,6 +146,35 @@ npm run dev
 cd frontend
 npm run dev
 ```
+
+## Deployment (Single Server)
+
+This repository is prepared for single-server deployment where Express serves both API and built frontend.
+
+1. Install dependencies:
+
+```bash
+npm run install:all
+```
+
+2. Build frontend:
+
+```bash
+npm run build
+```
+
+3. Start backend in production:
+
+```bash
+cd backend
+npm run start
+```
+
+Notes:
+
+- In production, Express serves static files from `frontend/dist`.
+- Non-API routes are redirected to frontend `index.html` for SPA routing.
+- API routes remain available under `/api/*`.
 
 ## API Endpoints
 
