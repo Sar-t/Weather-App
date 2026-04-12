@@ -6,6 +6,8 @@ import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext'
 import { WeatherProvider } from './context/WeatherContext'
 
+document.documentElement.classList.add('dark')
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

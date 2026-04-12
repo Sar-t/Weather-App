@@ -1,8 +1,6 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { LogOut, MapPin, MessageSquare, CloudSun, LayoutDashboard, CalendarDays } from 'lucide-react'
-import DarkModeToggle from './DarkModeToggle'
 import { useAuth } from '../context/AuthContext'
-import { useTheme } from '../hooks/useTheme'
 
 const navItems = [
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -13,7 +11,6 @@ const navItems = [
 
 function Navbar() {
   const { user, logout } = useAuth()
-  const { isDark, toggleTheme } = useTheme()
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -57,7 +54,6 @@ function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <DarkModeToggle isDark={isDark} onToggle={toggleTheme} />
           <button
             type="button"
             onClick={handleLogout}
